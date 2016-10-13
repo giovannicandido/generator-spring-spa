@@ -73,6 +73,16 @@ module.exports = generators.Base.extend({
       this.destinationPath('server/src/main/resources'),
       config
     );
+
+    this.fs.copy(
+      this.templatePath('../copy/**/*'),
+      this.destinationPath('server/')
+    );
+
+    this.fs.copy(
+      this.templatePath('../copy/**/.*'),
+      this.destinationPath('server/')
+    );
   },
  end: function () {
     console.log('server is created on: ' + this.destinationRoot() + '/server');

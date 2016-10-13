@@ -76,6 +76,11 @@ module.exports = generators.Base.extend({
       this.templatePath('../copy/**/*'),
       this.destinationRoot()
     );
+
+    this.fs.copy(
+      this.templatePath('../copy/**/.*'),
+      this.destinationRoot()
+    );
   },
   end: function(){
     console.log("Your app will be ready on " + this.destinationRoot())
