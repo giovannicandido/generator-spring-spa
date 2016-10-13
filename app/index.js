@@ -51,36 +51,12 @@ module.exports = generators.Base.extend({
   },
   prompting: function () {
     return this.prompt([{
-          name: 'appDescription',
-          message: 'What is the description?',
-          store: true,
-          when: utils.noConfig('appDescription', this.initialConfig)
-      }, {
           name: 'appVersion',
           message: 'What is the version?',
           default: '0.1.0',
           when: utils.noConfig('appVersion', this.initialConfig)
-      }, {
-          name: 'appAuthor',
-          message: 'Name of author?',
-          default: defaults.authorName,
-          when: utils.noConfig('appAuthor', this.initialConfig)
-      }, {
-          name: 'appEmail',
-          message: 'Author e-mail?',
-          default: defaults.authorEmail,
-          when: utils.noConfig('appEmail', this.initialConfig)
-      },{
-        type: 'confirm', 
-        name: 'moveon', 
-        message: 'Continue?',
-        default: true
-    }]).then(function (answers) {
+      }]).then(function (answers) {
       answers.appName = this.appName;
-      if(!answers.moveon){
-        process.exit(1);
-      }
-      delete(answers.moveon);
       this.config.set(answers);
       this.config.save();
     }.bind(this));
