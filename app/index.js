@@ -44,7 +44,7 @@ module.exports = generators.Base.extend({
     this.destinationRoot(this.destinationRoot(this.appName))
     this.initialConfig = this.config.getAll();
     utils.configInfo(this.initialConfig)
-
+    
     this.composeWith('spring-spa:server', {options: this.options});
     this.composeWith('spring-spa:client', {options: this.options})
     
