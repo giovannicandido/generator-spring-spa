@@ -25,14 +25,46 @@ jar {
 
 }
 
-task npmBuild(dependsOn: npmInstall, type: NpmTask) {
+
+task npmBuildAurelia(dependsOn: npmInstall, type: NodeTask) {
+    def SCRIPT = 'node_modules/aurelia-cli/bin/aurelia-cli.js'
+    def localScript = file(SCRIPT)
+    script = localScript
+
+    inputs.dir "src"
+    inputs.file "packages.json"
+    outputs.dir "scripts"
+    args = ['build', '--env prod']
+}
+
+task copyAurelia(dependsOn: npmBuildAurelia, type: Copy) {
+    from '.'
+    include 'index.html'
+    include 'scripts/**'
+    into 'dist'
+}
+
+task npmBuildAngular(dependsOn: npmInstall, type: NodeTask) {
+    def SCRIPT = 'node_modules/angular-cli/bin/ng'
+    def localScript = file(SCRIPT)
+    script = localScript
+
     inputs.dir "src"
     inputs.file "packages.json"
     outputs.dir "dist"
-    args = ['run', 'build.prod']
+    args = ['build', '--prod']
 }
 
-jar.dependsOn npmBuild
+/**
+ * jar.dependsOn copyAurelia for aurelia bundle
+ * jar.dependsOn npmBuildAngular for angular
+ */
+<% if (clientTech == 'aurelia') { %>
+jar.dependsOn copyAurelia
+<% } %>
+<% if (clientTech == 'angular') { %>
+jar.dependsOn npmBuildAngular
+<% } %>
 
 idea {
     module {

@@ -61,7 +61,13 @@ module.exports = generators.Base.extend({
       this.templatePath('*'),
       this.destinationPath('server/'),
       config
-    )
+    );
+    var package = config.packageName.split(".").join("/");
+    this.fs.copyTpl(
+      this.templatePath('src/java/**/*'),
+      this.destinationPath('server/src/main/java/' + package),
+      config
+    );
   },
  end: function () {
     console.log('server is created on: ' + this.destinationRoot() + '/server');
