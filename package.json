@@ -14,7 +14,8 @@
     "typescript",
     "springframework",
     "spring-boot",
-    "angularjs"
+    "angularjs",
+    "angular"
   ],
   "dependencies": {
     "fs": "0.0.1-security",

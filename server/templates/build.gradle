@@ -29,6 +29,7 @@ dependencies {
     compile project(":client")
    
     compile "org.springframework.boot:spring-boot-starter-web",
+            "org.springframework.boot:spring-boot-starter-actuator",
             "org.scala-lang.modules:scala-java8-compat$scalaV:0.7.0"
 
     compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'

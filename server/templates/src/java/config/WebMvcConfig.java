@@ -2,7 +2,6 @@ package <%= packageName %>.config;
 
 
 import <%= packageName %>.Constants;
-import <%= packageName %>.config.logging.Logging;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +29,10 @@ import java.util.List;
  *         10/09/15.
  */
 @Configuration
-public class WebConfig extends WebMvcConfigurerAdapter {
+public class WebMvcConfig extends WebMvcConfigurerAdapter {
     
-    @Logging
-    Logger logger;
+    
+    private Logger logger = LoggerFactory.getLogger(WebMvcConfig.class);
 
     private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
             "classpath:/META-INF/resources/", "classpath:/resources/",
