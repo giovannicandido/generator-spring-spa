@@ -4,6 +4,7 @@
 
 * Node >= 5
 * JDK 1.8
+* Git
 
 You need to install your client side cli globally
 
