@@ -66,4 +66,5 @@ Comming Soon:
 * Databases: slick.lightbend.com, flywaydb
 * Documentation in markdown for your project
 * Serve docs on Amazon, and github pages
-* More commands on the yo spring-spa:client and spring-spa:server for a more opnio
+* More commands on the yo spring-spa:client and spring-spa:server
+* Security
