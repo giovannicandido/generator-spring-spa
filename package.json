@@ -1,0 +1,25 @@
+{
+  "name": "generator-spring-spa",
+  "version": "0.1.0",
+  "description": "Production ready stack to start with modern SPA *FrontEnd*  *Backend* by *Java* **Spring Boot Framework**",
+  "author": "Giovanni Silva",
+  "license": "MIT",
+  "files": [
+    "server",
+    "client"
+  ],
+  "keywords": [
+    "yeoman-generator",
+    "aurelia",
+    "typescript",
+    "springframework",
+    "spring-boot",
+    "angularjs"
+  ],
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "iniparser": "^1.0.5",
+    "lodash": "^4.16.4",
+    "yeoman-generator": "^0.24.1"
+  }
+}
