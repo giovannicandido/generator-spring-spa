@@ -75,12 +75,17 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     private String[] getDevLocations() {
         List<String> resources = new ArrayList<>();
-        for (String r : CLASSPATH_RESOURCE_LOCATIONS) {
-            resources.add(r);
-        }
+        
+        // Client Files from  dist folder first
         String clientFolderLocation = getClientFolderLocation();
         logger.info("Client Folder Location: " + clientFolderLocation);
         resources.add(clientFolderLocation + "dist/");
+        
+        // Then classpath resources
+        for (String r : CLASSPATH_RESOURCE_LOCATIONS) {
+            resources.add(r);
+        }
+    
         return resources.toArray(new String[resources.size()]);
     }
 
