@@ -58,7 +58,7 @@ module.exports = generators.Base.extend({
   writing: function(){
     var config = this.config.getAll();
     this.fs.copyTpl(
-      this.templatePath('server/*'),
+      this.templatePath('*'),
       this.destinationPath('server/'),
       config
     )

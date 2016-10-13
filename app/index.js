@@ -45,8 +45,8 @@ module.exports = generators.Base.extend({
     this.initialConfig = this.config.getAll();
     utils.configInfo(this.initialConfig)
 
-    this.composeWith('spring-spa:server');
-    this.composeWith('spring-spa:client')
+    this.composeWith('spring-spa:server', {options: this.options});
+    this.composeWith('spring-spa:client', {options: this.options})
     
   },
   prompting: function () {
@@ -85,7 +85,22 @@ module.exports = generators.Base.extend({
       this.config.save();
     }.bind(this));
   },
-
+  writing: function(){
+    var config = this.config.getAll();
+    console.log( this.sourceRoot())
+    console.log(this.destinationRoot())
+    
+    this.fs.copyTpl(
+      this.templatePath('**/*'),
+      this.destinationPath(''),
+      config
+    );
+    
+    this.fs.copy(
+      this.templatePath('../copy/**/*'),
+      this.destinationRoot()
+    );
+  },
   end: function(){
     console.log("Your app will be ready on " + this.destinationRoot())
   }

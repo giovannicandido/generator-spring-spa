@@ -1,0 +1,74 @@
+def vJavaLang = '1.8'
+def javaProjects = [ project(':server') ]
+def bootProjects = javaProjects
+def gradleDir = "${rootProject.rootDir}/gradle"
+
+ext {
+    scalaVersion = '<%= scalaVersion %>'
+    scalaV = '_<%= scalaVersion.split(".", 2).join(".") %>'
+}
+
+wrapper.gradleVersion = '3.1'
+
+buildscript {
+    ext.springRepo = 'http://repo.spring.io/libs-release'
+
+    repositories {
+        maven { url springRepo }
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:<%= springBootVersion %>"
+    }
+}
+
+apply plugin: 'java'
+
+configure(allprojects) {
+    apply plugin: 'idea'
+}
+
+configure(rootProject) {
+    apply from: 'gradle/gitMetadata.gradle'
+}
+
+configure(javaProjects) {
+    apply plugin: 'java'
+    apply plugin: 'scala'
+
+    targetCompatibility = vJavaLang
+    sourceCompatibility = vJavaLang
+    repositories {
+        maven { url springRepo }
+        mavenCentral()
+        maven { url "https://oss.sonatype.org/content/groups/public/" }
+    }
+
+    dependencies {
+        compile 'org.slf4j:slf4j-api'
+        testCompile 'junit:junit'
+
+    }
+
+    configurations {
+        // replaced with jcl-over-slf4j
+        all*.exclude group: 'commons-logging', module: 'commons-logging'
+        // replaced with log4j-over-slf4j
+        all*.exclude group: 'log4j', module: 'log4j'
+    }
+}
+
+configure(bootProjects) {
+    apply plugin: 'spring-boot'
+    apply from: "$gradleDir/integTest.gradle"
+    apply from: "$gradleDir/writeGitPropertiesFile.gradle"
+
+    springBoot.backupSource = false
+    bootRun.dependsOn writeGitPropertiesFile
+
+    // Ensure env variable are loaded, like -DSPRING_PROFILES_ACTIVE
+    bootRun {
+        systemProperties System.properties
+    }
+
+}

@@ -6,6 +6,7 @@ module.exports = generators.Base.extend({
   constructor: function () {
         // Calling the super constructor is important so our generator is correctly set up
         generators.Base.apply(this, arguments);
+        this.option('skip-npm')
   },
 
   initializing: function(){
@@ -27,16 +28,34 @@ module.exports = generators.Base.extend({
     }.bind(this));
   },
 
+  default: {
+    createClient: function(){
+       var config = this.config.getAll();
+       if(config.clientTech === 'aurelia'){
+          this.spawnCommandSync('au', ['new', 'client'])
+        }else{
+          this.spawnCommandSync('ng', ['new', 'client', '--skip-npm', '--skip-bower', '--skip-git'])
+        }
+      },
+  },
+  
+  writing: function(){
+    var config = this.config.getAll();
+    this.fs.copyTpl(
+      this.templatePath('*'),
+      this.destinationPath('client/'),
+      config
+    )
+  },
   install: function(){
-    if(this.options['aurelia']){
-      this.spawnCommand('au', ['new', 'client'])
-    }else{
-      this.spawnCommand('ng', ['new', 'client'])
-    }
+    this.destinationRoot('client')
+    if(!this.options['skip-npm']){
+      this.npmInstall();
+    }   
   },
   end: function () {
     var clientTech = _.capitalize(this.clientTech)
     console.log("Using: " + clientTech);
-    console.log('Client will be created on: ' + this.destinationRoot() + '/client');
+    console.log('Client will be created on: ' + this.destinationRoot());
   }
 });
