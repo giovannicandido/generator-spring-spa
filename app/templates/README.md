@@ -69,6 +69,8 @@ Integration tests are writen in scala for brevity, but spring has a good integra
 Because of this, ScalaTest Run the test with JUnit4. Keep in mind you are in a JUnit env 
 when writting integration test, that said, scalatest assertions are avalible
 
+See: http://www.scalatest.org/getting_started_with_junit_4_in_scala
+
 ## What is Next?
 
 Comming Soon:
