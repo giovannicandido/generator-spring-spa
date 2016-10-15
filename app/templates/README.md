@@ -56,11 +56,23 @@ Notes:
 
 That is why we use the client side tools to dev and create a proxy to port **8080**
 
+# Server Tests
+
+Server tests are separated between Integration Tests (integTest) and Unit Tests (test)
+
+To run:
+
+    ./gradlew integTest
+    ./gradlew test
+
+Integration tests are writen in scala for brevity, but spring has a good integration with JUnit.
+Because of this, ScalaTest Run the test with JUnit4. Keep in mind you are in a JUnit env 
+when writting integration test, that said, scalatest assertions are avalible
+
 ## What is Next?
 
 Comming Soon:
 
-* Test and integration test examples for server
 * Keycloak authentication dev and prod flow
 * Continuous integration
 * Docker

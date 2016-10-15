@@ -64,12 +64,27 @@ module.exports = generators.Base.extend({
     );
     var package = config.packageName.split(".").join("/");
     this.fs.copyTpl(
-      this.templatePath('src/java/**/*'),
+      this.templatePath('src/main/java/**/*'),
       this.destinationPath('server/src/main/java/' + package),
       config
     );
     this.fs.copyTpl(
-      this.templatePath('src/resources'),
+      this.templatePath('src/test/scala/**/*'),
+      this.destinationPath('server/src/test/scala/' + package),
+      config
+    );
+    this.fs.copyTpl(
+      this.templatePath('src/integTest/scala/**/*'),
+      this.destinationPath('server/src/integTest/scala/' + package),
+      config
+    );
+    this.fs.copyTpl(
+      this.templatePath('src/integTest/resources/**/*'),
+      this.destinationPath('server/src/integTest/resources/'),
+      config
+    );
+    this.fs.copyTpl(
+      this.templatePath('src/main/resources/**/*'),
       this.destinationPath('server/src/main/resources'),
       config
     );
