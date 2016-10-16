@@ -38,6 +38,11 @@ module.exports = generators.Base.extend({
 
     this.argument('appName', {type: String, required: true})
     this.appName = _.camelCase(this.appName);
+
+    this.option('skip-npm',{ 
+      desc: 'Skip the npm instalation of client side dependencies',
+      type: Boolean
+    })
   },
 
   initializing : function () {

@@ -7,7 +7,10 @@ module.exports = generators.Base.extend({
   constructor: function () {
     // Calling the super constructor is important so our generator is correctly set up
     generators.Base.apply(this, arguments);
-    this.option('skip-npm')
+    this.option('skip-npm',{ 
+      desc: 'Skip the npm instalation of client side dependencies',
+      type: Boolean
+    })
   },
 
   initializing: function () {

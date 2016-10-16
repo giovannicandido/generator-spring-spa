@@ -76,10 +76,8 @@ See: http://www.scalatest.org/getting_started_with_junit_4_in_scala
 Comming Soon:
 
 * Keycloak authentication dev and prod flow
-* Continuous integration
 * Docker
 * Databases: slick.lightbend.com, flywaydb
-* Documentation in markdown for your project
 * Serve docs on Amazon, and github pages
 * More commands on the yo spring-spa:client and spring-spa:server
 * Security
