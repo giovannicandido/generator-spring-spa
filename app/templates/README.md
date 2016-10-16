@@ -81,6 +81,22 @@ It will generate files on the server folder including a integration test.
 
 You will need to edit **server/build.gradle** with the dependencies the command display
 
+You will also need to create or edit the files **server/src/main/resources/application-dev.properties** and 
+**server/src/integTest/resources/application-test.properties** there are examples with the same name ending with **.dist**
+
+Note: Do not put this files in version control because they change for each dev machine.
+
+## Flywaydb
+
+I highly recommend that you use [FlywayDB] from day zero
+
+Spring Boot has build in integration. You just need to declare the depencies in **server/build.gradle** 
+
+Add migrations in **server/main/resources/db/migration**
+
+You can then configure a good number of Flyway properties directly from your **application.properties** file.
+
+
 ## What is Next?
 
 Comming Soon:
@@ -93,3 +109,4 @@ Comming Soon:
 * Security
 
 [Slick]: http://slick.lightbend.com
+[FlywayDB]: https://flywaydb.org/
