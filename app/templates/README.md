@@ -71,6 +71,16 @@ when writting integration test, that said, scalatest assertions are avalible
 
 See: http://www.scalatest.org/getting_started_with_junit_4_in_scala
 
+# Using Databases
+
+There is a command to generate configurations for the [Slick] framework
+
+    yo spring-spa:slick
+
+It will generate files on the server folder including a integration test.
+
+You will need to edit **server/build.gradle** with the dependencies the command display
+
 ## What is Next?
 
 Comming Soon:
@@ -81,3 +91,5 @@ Comming Soon:
 * Serve docs on Amazon, and github pages
 * More commands on the yo spring-spa:client and spring-spa:server
 * Security
+
+[Slick]: http://slick.lightbend.com
