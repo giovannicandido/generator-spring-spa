@@ -15,7 +15,6 @@ module.exports = generators.Base.extend({
     generators.Base.apply(this, arguments);
 
     // // Next, add your custom code
-    // this.option('angular'); // This method adds support for a `--coffee` flag
   },
   
   initializing: function(){
