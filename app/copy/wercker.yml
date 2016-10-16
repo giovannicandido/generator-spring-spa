@@ -22,10 +22,15 @@ build:
       name: "Remove application-test.properties"
       code: |
         file="server/src/integTest/resources/application-test.properties"
-        if [ -f $file ]
-          then
-          rm $file
-        fi
+        file2="server/src/main/resources/application-dev.properties"
+        function removeFile(){
+          if [ -e "$1" ]
+            then
+            rm "$1"
+          fi
+        }
+        removeFile $file
+        removeFile $file2
     - script:
       name: gradle build
       code: |
