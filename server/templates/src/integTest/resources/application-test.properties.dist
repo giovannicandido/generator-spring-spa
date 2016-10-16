@@ -1,0 +1,5 @@
+logging.level.ROOT = WARN
+spring.datasource.url=jdbc:postgresql://localhost/giovanni
+spring.datasource.username=giovanni
+spring.datasource.password=1234
+spring.datasource.driver-class-name=org.postgresql.Driver
