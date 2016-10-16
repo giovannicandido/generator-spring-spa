@@ -96,8 +96,18 @@ Add migrations in **server/main/resources/db/migration**
 
 You can then configure a good number of Flyway properties directly from your **application.properties** file.
 
+## Documentation
 
-## What is Next?
+The documentation use [Mkdocs]
+
+    mkdocs serve
+    mkdocs build
+
+Just edit the files on **docs** folder
+
+wercker can be configured to deploy the docs
+
+# What is Next?
 
 Comming Soon:
 
@@ -109,3 +119,4 @@ Comming Soon:
 
 [Slick]: http://slick.lightbend.com
 [FlywayDB]: https://flywaydb.org/
+[Mkdocs]: http://www.mkdocs.org/
