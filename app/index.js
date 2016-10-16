@@ -51,6 +51,7 @@ module.exports = generators.Base.extend({
     this.log(yosay(
       'Welcome to ' + chalk.red('generator-spring-spa') + '!'
     ));
+    this.log(chalk.green("This generator requires angular-cli or aurelia-cli"));
     this.destinationRoot(this.destinationRoot(this.appName))
     this.initialConfig = this.config.getAll();
     utils.configInfo(this.initialConfig)

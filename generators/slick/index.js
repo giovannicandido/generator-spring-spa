@@ -34,15 +34,22 @@ module.exports = yeoman.Base.extend({
     ); 
   },
   end: function(){
-    this.log(chalk.green("You need the follow dependencies on server/build.gradle"))
+    this.log(chalk.green("You need the follow dependencies on " + chalk.blue.underline.bold("server/build.gradle")))
     this.log(
             'compile "org.springframework.boot:spring-boot-starter-jdbc",' + '\n' +
-            '        "org.postgresql:postgresql:9.4-1202-jdbc42",' + "\n" +
+            '        "org.postgresql:postgresql:9.4-1202-jdbc42"' + "\n" +
             '// scala' + '\n' +
             'compile "com.typesafe.play:play-json$scalaV:2.5.9",' + '\n' +
             '        "com.typesafe.slick:slick$scalaV:3.1.1",' + '\n' +
             '        "com.github.tminglei:slick-pg$scalaV:0.14.3",' + '\n' +
             '        "com.github.tminglei:slick-pg_date2$scalaV:0.14.3",' + '\n' +
-            '        "com.github.tminglei:slick-pg_play-json$scalaV:0.14.3"')
+            '        "com.github.tminglei:slick-pg_play-json$scalaV:0.14.3"'
+            );
+            
+     this.log("\n");
+     this.log(chalk.green("You also need to configure "
+      + chalk.blue.underline.bold("server/src/integTest/resources/application-test.properties")
+      + " and " + chalk.blue.underline.bold("server/src/main/resources/application-dev.properties")))
+     this.log("Files with " + chalk.blue.underline.bold(".dist") + " are examples")
   }
 });
