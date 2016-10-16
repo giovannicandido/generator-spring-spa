@@ -1,2 +1,3 @@
 build/
 /work/
+src/integTest/resources/application-test.properties
