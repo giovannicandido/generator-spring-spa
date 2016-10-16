@@ -2,6 +2,8 @@ var generators = require('yeoman-generator');
 var _ = require('lodash');
 var path = require('path');
 var utils = require('../utils');
+var yosay = require('yosay');
+var chalk = require('chalk');
 
 var defaults = (function () {
       var workingDirName = path.basename(process.cwd()),
@@ -46,6 +48,9 @@ module.exports = generators.Base.extend({
   },
 
   initializing : function () {
+    this.log(yosay(
+      'Welcome to ' + chalk.red('generator-spring-spa') + '!'
+    ));
     this.destinationRoot(this.destinationRoot(this.appName))
     this.initialConfig = this.config.getAll();
     utils.configInfo(this.initialConfig)
