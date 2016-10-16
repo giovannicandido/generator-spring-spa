@@ -19,6 +19,14 @@ build:
           sleep 3;
         done
     - script:
+      name: "Remove application-test.properties"
+      code: |
+        file="server/src/integTest/resources/application-test.properties"
+        if [ -f $file ]
+          then
+          rm $file
+        fi
+    - script:
       name: gradle build
       code: |
         export GRADLE_USER_HOME=$WERCKER_CACHE_DIR/gradle
