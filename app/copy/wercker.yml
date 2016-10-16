@@ -1,0 +1,37 @@
+box: atende/build-image
+
+services:
+  - id: postgres
+    tag: 9.4
+    env:
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_USER: postgres
+      POSTGRES_DB: application_test
+
+build:
+  steps:
+    - script:
+      name: "Wait for POSTGRES connection"
+      code: |
+        echo "Postgresql on $POSTGRES_PORT_5432_TCP_ADDR $POSTGRES_PORT_5432_TCP_PORT"
+        while ! pg_isready -h $POSTGRES_PORT_5432_TCP_ADDR -p $POSTGRES_PORT_5432_TCP_PORT
+        do
+          sleep 3;
+        done
+    - script:
+      name: gradle build
+      code: |
+        export GRADLE_USER_HOME=$WERCKER_CACHE_DIR/gradle
+        export SPRING_PROFILES_ACTIVE=ci
+        ./gradlew --full-stacktrace build
+    - script:
+      name: build docs
+      code: |
+        mkdocs build
+# uncomment and edit to deploy
+#deploy:
+#  steps:
+#    - giovanni/gh-pages:
+#      repo: atende/notification-server
+#      token: $GIT_TOKEN
+#      basedir: site
