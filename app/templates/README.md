@@ -103,7 +103,6 @@ Comming Soon:
 
 * Keycloak authentication dev and prod flow
 * Docker
-* Databases: slick.lightbend.com, flywaydb
 * Serve docs on Amazon, and github pages
 * More commands on the yo spring-spa:client and spring-spa:server
 * Security
