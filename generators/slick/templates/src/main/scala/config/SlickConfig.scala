@@ -10,7 +10,7 @@ import org.springframework.context.annotation.{Bean, Configuration}
   * @author Giovanni Silva
   */
 @Configuration
-class DatabaseConfig {
+class SlickConfig {
   /**
     * Bean para ser injetado como DataSource
     * @param dataSource DataSource ativo no Spring. Conexão com base de dados
