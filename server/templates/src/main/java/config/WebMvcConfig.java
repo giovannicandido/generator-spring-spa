@@ -40,7 +40,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Autowired
     private Environment env;
 
-    @Autowired
+    @Autowired(required=false)
     private GitProperties gitProperties;
 
 
@@ -120,10 +120,20 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
                     .addTransformer(appCacheTransformer);
     }
 
-    protected String getApplicationVersion() {
-        return this.devMode() ? "dev" : this.gitProperties.getCommitId();
-    }
+     protected String getApplicationVersion() {
+        if(this.devMode()){
+            return "dev";
+        }else if(this.gitProperties != null){
+            return this.gitProperties.getCommitId();
+        }else{
+            String version = this.env.getProperty("app.version");
+            if(version == null){
+                logger.warn("Configure a version in app.version or enable GitProperties");
+            }
+            return version == null ? "defaulVersion" : version;
 
+        }
+    }
     /**
      * Internationalization and Locale
      */
