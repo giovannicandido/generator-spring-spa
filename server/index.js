@@ -94,8 +94,8 @@ module.exports = generators.Base.extend({
     );
 
     this.fs.copy(
-      this.templatePath('../copy/**/.*'),
-      this.destinationPath('server/')
+      this.templatePath('../_gitignore'),
+      this.destinationPath('server/.gitignore')
     );
   },
  end: function () {

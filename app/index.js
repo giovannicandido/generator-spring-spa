@@ -61,12 +61,19 @@ module.exports = generators.Base.extend({
     
   },
   prompting: function () {
-    return this.prompt([{
+    return this.prompt([
+      {
           name: 'appVersion',
           message: 'What is the version?',
           default: '0.1.0',
           when: utils.noConfig('appVersion', this.initialConfig)
-      }]).then(function (answers) {
+      },{
+        name: 'userName',
+        message: 'What is your username?',
+        default: defaults.userName,
+        when: utils.noConfig('userName', this.initialConfig)
+      }
+      ]).then(function (answers) {
       answers.appName = this.appName;
       this.config.set(answers);
       this.config.save();
@@ -89,8 +96,8 @@ module.exports = generators.Base.extend({
     );
 
     this.fs.copy(
-      this.templatePath('../copy/**/.*'),
-      this.destinationRoot()
+      this.templatePath('../_gitignore'),
+      this.destinationRoot('.gitignore')
     );
   },
   end: function(){
