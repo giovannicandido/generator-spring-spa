@@ -30,6 +30,11 @@ apply plugin: 'java'
 
 configure(allprojects) {
     apply plugin: 'idea'
+    idea {
+        module {
+            excludeDirs += file('.wercker')
+        }
+    }
 }
 
 
