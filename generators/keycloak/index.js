@@ -23,33 +23,27 @@ module.exports = yeoman.Base.extend({
     var config = this.initialConfig;
     var thePackage = config.packageName.split(".").join("/");
     this.fs.copyTpl(
-      this.templatePath('src/main/scala/**/*'),
-      this.destinationPath('server/src/main/scala/' + thePackage),
+      this.templatePath('src/main/java/**/*'),
+      this.destinationPath('server/src/main/java/' + thePackage),
       config
     );
-    this.fs.copyTpl(
-      this.templatePath('src/integTest/scala/**/*'),
-      this.destinationPath('server/src/integTest/scala/' + thePackage),
-      config
-    ); 
+  
   },
   end: function(){
-    this.log(chalk.green("You need the follow dependencies on " + chalk.blue.underline.bold("server/build.gradle")))
+    this.log(chalk.green("\n\nYou need the follow dependencies on " + chalk.blue.underline.bold("server/build.gradle")))
+    this.log("\n")
     this.log(
-            'compile "org.springframework.boot:spring-boot-starter-jdbc",' + '\n' +
-            '        "org.postgresql:postgresql:9.4-1202-jdbc42"' + "\n" +
-            '// scala' + '\n' +
-            'compile "com.typesafe.play:play-json$scalaV:2.5.9",' + '\n' +
-            '        "com.typesafe.slick:slick$scalaV:3.1.1",' + '\n' +
-            '        "com.github.tminglei:slick-pg$scalaV:0.14.3",' + '\n' +
-            '        "com.github.tminglei:slick-pg_date2$scalaV:0.14.3",' + '\n' +
-            '        "com.github.tminglei:slick-pg_play-json$scalaV:0.14.3"'
+            'compile "org.keycloak:keycloak-spring-security-adapter:2.2.1.Final"' + '\n'
             );
             
-     this.log("\n");
-     this.log(chalk.green("You also need to configure "
-      + chalk.blue.underline.bold("server/src/integTest/resources/application-test.properties")
-      + " and " + chalk.blue.underline.bold("server/src/main/resources/application-dev.properties")))
-     this.log("Files with " + chalk.blue.underline.bold(".dist") + " are examples")
+     this.log(chalk.green("You will need a keycloak.json file. See examples in \n"
+      + " " + chalk.blue.underline.bold("server/src/integTest/resources/application-test.properties.dist")
+      + " \n " + chalk.blue.underline.bold("server/src/main/resources/application-dev.properties.dist")
+      + " \n " + chalk.blue.underline.bold("server/src/main/resources/application.properties.dist")))
+     this.log("I recomend: application.properties with keycloak.configurationFile=/etc/project-name-keycloak.json " 
+      + ", application-dev.properties and application-test.properties with keycloak.configurationFile=classpath:/keycloak-dev.json")
+     this.log("\n You can integrate your SPA client with the Cross Site Forgery Request and with AjaxTimeoutRedirect."
+     + "Is also a good idea to disable csrf projection in tests (security.enable-csrf=false)" 
+     + ". Run " +  chalk.blue.underline.bold("yo spring-spa:interceptor") + " for a interceptor example of AjaxTimeoutRedirect "  )
   }
 });
