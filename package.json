@@ -1,6 +1,6 @@
 {
   "name": "generator-spring-spa",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Production ready stack to start with modern SPA *FrontEnd*  *Backend* by *Java* **Spring Boot Framework**",
   "author": "Giovanni Silva",
   "license": "MIT",
