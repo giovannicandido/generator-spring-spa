@@ -64,3 +64,71 @@ The main technological stack is:
 You don't need to know everything, some are just for the build, others are optional.
 
 If you know Spring Boot, Gradle and Angular or Aurelia, you are good to go :-)
+
+# Usage
+
+Lets create a angular project with everything the generator provides:
+
+Install the things:
+
+    npm install -g yo generator-spring-spa angular-cli
+
+Create a new project
+
+    yo spring-spa newProject
+
+Add to git. This is required for gradle git and spring integration. Check http://localhost:8080/config 
+If you want you can disable that in build.gradle, remove **apply plugin: "com.gorylenko.gradle-git-properties"**
+
+    cd newProject
+    git init
+    git add .
+    git commit -m "Initial commit"
+
+Run a build and a test (lots of things will be downloaded, good time to have a coffe ;-)
+
+    cd newProject
+    ./gradlew build
+
+All testes should pass
+
+
+Integrate slick database:
+
+    cd newProject
+    yo spring-spa:slick
+
+Follow instructions
+
+Run tests
+
+    ./gradlew integTest
+
+Integrate keycloak:
+
+    yo spring-spa:keycloak
+
+Follow instructions
+
+Run tests
+
+    ./gradlew integTest
+
+indexHtml test should fail, you now have security enabled. Update the test, see: http://docs.spring.io/spring-security/site/docs/current/reference/html/test-method.html
+
+Create a SPA interceptor
+
+    cd newProject
+    yo spring-spa:interceptor
+
+Follow instructions 
+
+You will need to fit for your needs
+
+Cross Site Request Forgery is enabled by default in spring, but you need to 
+integrate in your SPA
+
+    cd newProject
+    yo spring-spa:csrf
+
+Follow instructions
