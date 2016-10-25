@@ -1,0 +1,49 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.github.maiflai:gradle-scalatest:0.14"
+    }
+}
+
+repositories {
+    maven {
+        url "http://oss.sonatype.org/content/groups/public"
+    }
+}
+
+apply plugin: "com.github.maiflai.scalatest"
+
+version = '<%= appVersion %>'
+
+
+jar {
+    baseName = '<%= appName %>'
+    version = '<%= appVersion %>'
+}
+
+dependencies {
+    compile project(":client")
+   
+     compile "org.springframework.boot:spring-boot-starter-web",
+            "org.springframework.boot:spring-boot-starter-actuator",
+            "org.scala-lang.modules:scala-java8-compat$scalaV:0.7.0",
+            'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+
+    testCompile 'org.mockito:mockito-core:1.10.19',
+                "org.springframework.boot:spring-boot-starter-test",
+                "junit:junit:4.12",
+                'com.jayway.jsonpath:json-path:2.2.0'
+
+    testRuntime 'org.pegdown:pegdown:1.6.0',
+                'org.skyscreamer:jsonassert:1.2.3'
+
+    // Scala
+    compile "org.scala-lang:scala-library:$scalaVersion",
+            "com.fasterxml.jackson.module:jackson-module-scala$scalaV:2.8.3"
+
+    testCompile "org.scalatest:scalatest$scalaV:3.0.0"
+}
