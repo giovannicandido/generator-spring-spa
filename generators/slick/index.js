@@ -16,10 +16,6 @@ module.exports = yeoman.Base.extend({
     return Object.keys(obj).length === 0 && obj.constructor === Object
   },
   writing: function () {
-    if(this._isObjectEmpty(this.initialConfig)){
-      console.error(chalk.red('Make sure you run this in the root folder of a app generate by spring-spa'))
-      process.exit(1)
-    }
     var config = this.initialConfig;
     var thePackage = config.packageName.split(".").join("/");
     this.fs.copyTpl(
