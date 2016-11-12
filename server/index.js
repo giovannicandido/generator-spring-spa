@@ -99,6 +99,6 @@ module.exports = generators.Base.extend({
     );
   },
  end: function () {
-    console.log('server is created on: ' + this.destinationRoot() + '/server');
+    console.log('server is ready on folder server');
   }
 });

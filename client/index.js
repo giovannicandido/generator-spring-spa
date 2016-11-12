@@ -37,7 +37,8 @@ module.exports = generators.Base.extend({
         type: 'list',
         default: 'angular',
         choices: ['angular', 'aurelia'],
-        when: utils.noConfig('clientTech', this.initialConfig)
+        when: utils.noConfig('clientTech', this.initialConfig),
+        store: true
       }
     ]).then(function (answers) {
       this.config.set(answers);
@@ -71,8 +72,6 @@ module.exports = generators.Base.extend({
     }
   },
   end: function () {
-    var clientTech = _.capitalize(this.clientTech)
-    console.log("Using: " + clientTech);
-    console.log('Client will be created on: ' + this.destinationRoot());
+    console.log('client will be ready on folder client');
   }
 });
