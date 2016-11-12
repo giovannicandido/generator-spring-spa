@@ -64,7 +64,7 @@ module.exports = {
     },
     addGradleDependency: function (scope, group, name, version) {
         try {
-            var fullPath = 'build.gradle';
+            var fullPath = 'server/build.gradle';
             this.rewriteFile({
                 file: fullPath,
                 needle: 'generator-needle-gradle-dependency',

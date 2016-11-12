@@ -46,4 +46,7 @@ dependencies {
             "com.fasterxml.jackson.module:jackson-module-scala$scalaV:2.8.3"
 
     testCompile "org.scalatest:scalatest$scalaV:3.0.0"
+
+    //generator-needle-gradle-dependency - Generator will add additional gradle dependencies here
+
 }
