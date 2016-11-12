@@ -1,6 +1,7 @@
 'use strict';
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
+var utils = require('../../utils')
 
 module.exports = yeoman.Base.extend({
   constructor: function () {
@@ -30,11 +31,8 @@ module.exports = yeoman.Base.extend({
   
   },
   end: function(){
-    this.log(chalk.green("\n\nYou need the follow dependencies on " + chalk.blue.underline.bold("server/build.gradle")))
-    this.log("\n")
-    this.log(
-            'compile "org.keycloak:keycloak-spring-security-adapter:2.2.1.Final"' + '\n'
-            );
+    utils.addGradleDependency("compile", "org.keycloak","keycloak-spring-security-adapter","2.2.1.Final");
+    this.log(chalk.green("Added gradle dependencies"));
             
      this.log(chalk.green("You will need a keycloak.json file. See examples in \n"
       + " " + chalk.blue.underline.bold("server/src/integTest/resources/application-test.properties.dist")
@@ -43,7 +41,7 @@ module.exports = yeoman.Base.extend({
      this.log("I recomend: application.properties with keycloak.configurationFile=/etc/project-name-keycloak.json " 
       + ", application-dev.properties and application-test.properties with keycloak.configurationFile=classpath:/keycloak-dev.json")
      this.log("\n You can integrate your SPA client with the Cross Site Forgery Request and with AjaxTimeoutRedirect."
-     + "Is also a good idea to disable csrf projection in tests (security.enable-csrf=false)" 
-     + ". Run " +  chalk.blue.underline.bold("yo spring-spa:interceptor") + " for a interceptor example of AjaxTimeoutRedirect "  )
+     + " Is also a good idea to disable csrf projection in tests (security.enable-csrf=false)" 
+     + ". Run " +  chalk.blue.underline.bold("yo spring-spa:interceptor") + " to generate HttpInterceptors "  )
   }
 });

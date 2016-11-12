@@ -63,17 +63,24 @@ module.exports = {
         return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
     },
     addGradleDependency: function (scope, group, name, version) {
+        var dependency;
+        if(typeof version === 'undefined') {
+            dependency = `${scope} '${group}:${name}'`
+        }else{
+           dependency = `${scope} '${group}:${name}:${version}'` 
+        }
         try {
             var fullPath = 'server/build.gradle';
             this.rewriteFile({
                 file: fullPath,
                 needle: 'generator-needle-gradle-dependency',
                 splicable: [
-                    `${scope} '${group}:${name}:${version}'`
+                    dependency
                 ]
             }, this);
         } catch (e) {
-            console.log(chalk.yellow('\nUnable to find ') + fullPath + chalk.yellow(' or missing required jhipster-needle. Reference to ') + 'classpath: ' + group + ':' + name + ':' + version + chalk.yellow(' not added.\n'));
+            console.error(e);
+            console.log(chalk.yellow('\nUnable to find ') + fullPath + chalk.yellow(' or missing required generator-needle-gradle-dependency. Reference to ') + scope + ': ' + group + ':' + name + ':' + version + chalk.yellow(' not added.\n'));
         }
     }
 
