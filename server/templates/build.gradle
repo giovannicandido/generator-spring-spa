@@ -25,6 +25,13 @@ jar {
     version = '<%= appVersion %>'
 }
 
+// Work around a incompatibility of gradle 3 scala and intellij. Fix is coming in intellij
+
+ScalaCompileOptions.metaClass.daemonServer = true
+ScalaCompileOptions.metaClass.fork = true
+ScalaCompileOptions.metaClass.useAnt = false
+ScalaCompileOptions.metaClass.useCompileDaemon = false
+
 dependencies {
     compile project(":client")
    
