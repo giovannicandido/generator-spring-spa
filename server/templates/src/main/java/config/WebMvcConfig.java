@@ -79,7 +79,14 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         // Client Files from  dist folder first
         String clientFolderLocation = getClientFolderLocation();
         logger.info("Client Folder Location: " + clientFolderLocation);
+        <% if (clientTech == 'angular') { %>
         resources.add(clientFolderLocation + "dist/");
+        <% } %>
+        <% if (clientTech == 'aurelia') { %>
+        resources.add(clientFolderLocation);
+        <% } %>
+
+        
         
         // Then classpath resources
         for (String r : CLASSPATH_RESOURCE_LOCATIONS) {
