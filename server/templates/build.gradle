@@ -25,6 +25,12 @@ jar {
     version = '<%= appVersion %>'
 }
 
+// Work around to intellijidea bug https://youtrack.jetbrains.com/oauth?state=%2Fissue%2FIDEA-160175
+ScalaCompileOptions.metaClass.daemonServer = true
+ScalaCompileOptions.metaClass.fork = true
+ScalaCompileOptions.metaClass.useAnt = false
+ScalaCompileOptions.metaClass.useCompileDaemon = false
+
 dependencies {
     compile project(":client")
    
