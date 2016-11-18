@@ -25,8 +25,7 @@ jar {
     version = '<%= appVersion %>'
 }
 
-// Work around a incompatibility of gradle 3 scala and intellij. Fix is coming in intellij
-
+// Work around to intellijidea bug https://youtrack.jetbrains.com/oauth?state=%2Fissue%2FIDEA-160175
 ScalaCompileOptions.metaClass.daemonServer = true
 ScalaCompileOptions.metaClass.fork = true
 ScalaCompileOptions.metaClass.useAnt = false

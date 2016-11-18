@@ -1,5 +1,6 @@
 package <%= packageName %>.config;
 
+import <%= packageName %>.security.AjaxLogoutSuccessHandler;
 import org.keycloak.adapters.springsecurity.KeycloakSecurityComponents;
 import org.keycloak.adapters.springsecurity.client.KeycloakClientRequestFactory;
 import org.keycloak.adapters.springsecurity.client.KeycloakRestTemplate;
@@ -16,8 +17,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.web.access.ExceptionTranslationFilter;
@@ -33,6 +36,9 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 @ComponentScan(basePackageClasses = KeycloakSecurityComponents.class)
 public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
 {
+    @Autowired
+    private AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler;
+
     @Value("${security.enable-csrf:true}")
     Boolean csrfEnabled = true;
 
@@ -74,6 +80,15 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
     }
 
     @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring()
+                .antMatchers(HttpMethod.OPTIONS, "/**")
+                .antMatchers("/app/**/*.{js,html}")
+                .antMatchers("/i18n/**")
+                .antMatchers("/assets/**");
+    }
+
+    @Override
     protected void configure(HttpSecurity http) throws Exception
     {
         super.configure(http);
@@ -82,7 +97,12 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
 //                .antMatchers("/customers*").hasRole("USER")
 //                .antMatchers("/admin*").hasRole("ADMIN")
                 .anyRequest().authenticated()
-                .and().logout().logoutSuccessUrl("/logout")
+                .and()
+                    .logout()
+                    .logoutUrl("/api/logout")
+                    .logoutSuccessHandler(ajaxLogoutSuccessHandler)
+                    .deleteCookies("JSESSIONID", "CSRF-TOKEN")
+                    .permitAll()
                 .and().exceptionHandling();
 
         if (!csrfEnabled) {
