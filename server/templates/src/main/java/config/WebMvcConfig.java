@@ -84,10 +84,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         <% } %>
         <% if (clientTech == 'aurelia') { %>
         resources.add(clientFolderLocation);
-        <% } %>
-
-        
-        
+        <% } %> 
         // Then classpath resources
         for (String r : CLASSPATH_RESOURCE_LOCATIONS) {
             resources.add(r);
