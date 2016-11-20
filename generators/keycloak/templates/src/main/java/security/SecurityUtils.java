@@ -82,13 +82,22 @@ public final class SecurityUtils {
         KeycloakPrincipal userDetails = (KeycloakPrincipal) authentication.getPrincipal();
         IDToken idToken = userDetails.getKeycloakSecurityContext().getIdToken();
 
-        String username = idToken.getPreferredUsername();
-
         User user = new User();
-        user.setFirstName(idToken.getGivenName());
-        user.setLastName(idToken.getFamilyName());
         user.setEmail(idToken.getEmail());
-        user.setLogin(username);
+        user.setFirstName(idToken.getGivenName());
+        user.setFullName(idToken.getName());
+        user.setEmail(idToken.getEmail());
+        user.setGender(idToken.getGender());
+        user.setLastName(idToken.getFamilyName());
+        user.setLocale(idToken.getLocale());
+        user.setLogin(idToken.getPreferredUsername());
+        user.setPhoneNumber(idToken.getPhoneNumber());
+        user.setPhoneNumberVerified(idToken.getPhoneNumberVerified());
+        user.setPicture(idToken.getPicture());
+        user.setProfile(idToken.getProfile());
+        user.setWebsite(idToken.getWebsite());
+        user.setUpdatedAt(idToken.getUpdatedAt());
+        
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         user.setAuthorities(authorities);
         return user;
