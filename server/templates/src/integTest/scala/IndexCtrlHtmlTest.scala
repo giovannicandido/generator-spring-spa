@@ -1,16 +1,12 @@
-package com.mycompany.product
-import org.junit.{Test, Before}
-import org.assertj.core.api.Assertions._;
+package <%= packageName %>
+import <%= packageName %>.test.IntegrationTest
+import org.assertj.core.api.Assertions._
+import org.junit.Test
 import org.junit.runner.RunWith
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 import org.springframework.beans.factory.annotation.Autowired
-import com.mycompany.product.test.annotations.IntegTest
-import com.mycompany.product.test.IntegrationTest
-
-import org.springframework.boot.test.web.client.TestRestTemplate
-
-import org.springframework.boot.test.web.client._
 import org.springframework.boot.test.context._
+import org.springframework.boot.test.web.client.TestRestTemplate
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 
 /**
  * Test if the app runs with index.html

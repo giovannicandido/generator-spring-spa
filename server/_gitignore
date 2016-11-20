@@ -2,4 +2,4 @@ build/
 /work/
 src/integTest/resources/application-test.properties
 src/main/resources/application-dev.properties
-src/main/resources/keycloak-dev.properties
+src/main/resources/keycloak-dev.json

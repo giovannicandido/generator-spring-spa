@@ -30,8 +30,10 @@ module.exports = yeoman.Base.extend({
     );
   
   },
-  end: function(){
+  addDependencies: function() {
     utils.addGradleDependency("compile", "org.keycloak","keycloak-spring-security-adapter","2.2.1.Final");
+  },
+  end: function(){
     this.log(chalk.green("Added gradle dependencies"));
             
      this.log(chalk.green("You will need a keycloak.json file. See examples in \n"

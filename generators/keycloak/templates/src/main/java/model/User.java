@@ -1,4 +1,4 @@
-package package <%= packageName %>.model;
+package <%= packageName %>.model;
 
 import org.springframework.security.core.GrantedAuthority;
 

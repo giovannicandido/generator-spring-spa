@@ -65,6 +65,9 @@ module.exports = generators.Base.extend({
       config
     )
   },
+   installingAngularSPA: function() {
+    this.npmInstall(['angular-spa'], { 'save': true });
+  },
   install: function () {
     this.destinationRoot('client')
     if (!this.options['skip-npm']) {
