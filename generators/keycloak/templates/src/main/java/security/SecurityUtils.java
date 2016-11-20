@@ -78,6 +78,7 @@ public final class SecurityUtils {
     }
 
     public static User getCurrentUserWithAuthorities() {
+        try {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         KeycloakPrincipal userDetails = (KeycloakPrincipal) authentication.getPrincipal();
         IDToken idToken = userDetails.getKeycloakSecurityContext().getIdToken();
@@ -101,5 +102,8 @@ public final class SecurityUtils {
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         user.setAuthorities(authorities);
         return user;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
