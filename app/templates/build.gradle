@@ -26,7 +26,6 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
 
 configure(allprojects) {
     apply plugin: 'idea'
@@ -65,7 +64,7 @@ configure(javaProjects) {
 }
 
 configure(bootProjects) {
-    apply plugin: 'spring-boot'
+    apply plugin: 'org.springframework.boot'
     apply from: "$gradleDir/integTest.gradle"
     apply plugin: "com.gorylenko.gradle-git-properties"
 
