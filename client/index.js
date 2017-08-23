@@ -52,7 +52,7 @@ module.exports = generators.Base.extend({
       if (config.clientTech === 'aurelia') {
         this.spawnCommandSync('au', ['new', 'client'])
       } else {
-        this.spawnCommandSync('ng', ['new', 'client', '--skip-npm', '--skip-bower', '--skip-git'])
+        this.spawnCommandSync('ng', ['new', 'client', '--skip-install', '--skip-git'])
       }
     },
   },
