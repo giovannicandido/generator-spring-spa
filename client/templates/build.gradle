@@ -45,7 +45,7 @@ task copyAurelia(dependsOn: npmBuildAurelia, type: Copy) {
 }
 
 task npmBuildAngular(dependsOn: npmInstall, type: NodeTask) {
-    def SCRIPT = 'node_modules/angular-cli/bin/ng'
+    def SCRIPT = 'node_modules/.bin/ng'
     def localScript = file(SCRIPT)
     script = localScript
 
