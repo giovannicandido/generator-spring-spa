@@ -3,8 +3,8 @@ var utils = require('../utils');
 
 var defaults = (function(){
   return {
-     scalaVersion: '2.11.8',
-     springBootVersion: '1.4.2.RELEASE',
+     scalaVersion: '2.12.3',
+     springBootVersion: '1.5.6.RELEASE',
      packageName: 'com.mycompany.product'
   }
 })();
