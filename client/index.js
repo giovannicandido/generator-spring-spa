@@ -59,6 +59,10 @@ module.exports = generators.Base.extend({
 
   writing: function () {
     var config = this.config.getAll();
+    this.fs.copy(
+      this.templatePath('../_gitignore'),
+      this.destinationRoot() + '/client/.gitignore'
+    );
     this.fs.copyTpl(
       this.templatePath('*'),
       this.destinationPath('client/'),
